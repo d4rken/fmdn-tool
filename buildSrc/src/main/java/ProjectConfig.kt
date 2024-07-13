@@ -8,7 +8,7 @@ import java.time.Instant
 import java.util.*
 
 object ProjectConfig {
-    const val packageName = "eu.darken.fmdnt"
+    const val packageName = "eu.darken.fmdn"
 
     const val minSdk = 26
     const val compileSdk = 34

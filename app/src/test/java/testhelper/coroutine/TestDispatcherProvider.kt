@@ -1,6 +1,6 @@
 package testhelper.coroutine
 
-import eu.darken.fmdnt.common.coroutine.DispatcherProvider
+import eu.darken.fmdn.common.coroutine.DispatcherProvider
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 

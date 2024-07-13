@@ -1,8 +1,8 @@
 package testhelper
 
-import eu.darken.fmdnt.common.debug.logging.Logging
-import eu.darken.fmdnt.common.debug.logging.Logging.Priority.VERBOSE
-import eu.darken.fmdnt.common.debug.logging.log
+import eu.darken.fmdn.common.debug.logging.Logging
+import eu.darken.fmdn.common.debug.logging.Logging.Priority.VERBOSE
+import eu.darken.fmdn.common.debug.logging.log
 import io.mockk.unmockkAll
 import org.junit.jupiter.api.AfterAll
 import testhelpers.logging.JUnitLogger

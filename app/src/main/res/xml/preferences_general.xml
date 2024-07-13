@@ -4,14 +4,14 @@
 
     <PreferenceCategory android:title="@string/settings_category_ui_label">
 
-        <eu.darken.fmdnt.common.preferences.ListPreference2
+        <eu.darken.fmdn.common.preferences.ListPreference2
             android:icon="@drawable/ic_theme_24"
             android:key="core.ui.theme.mode"
             android:title="@string/ui_theme_mode_setting_label"
             app:persistent="false"
             app:summary="@string/ui_theme_mode_setting_explanation" />
 
-        <eu.darken.fmdnt.common.preferences.ListPreference2
+        <eu.darken.fmdn.common.preferences.ListPreference2
             android:icon="@drawable/ic_palette_24"
             android:key="core.ui.theme.style"
             android:title="@string/ui_theme_style_setting_label"

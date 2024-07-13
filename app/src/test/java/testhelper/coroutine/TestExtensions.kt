@@ -1,6 +1,6 @@
 package testhelper.coroutine
 
-import eu.darken.fmdnt.common.debug.logging.asLog
+import eu.darken.fmdn.common.debug.logging.asLog
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.test.TestScope

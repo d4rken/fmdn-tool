@@ -19,7 +19,7 @@ android {
         versionCode = ProjectConfig.Version.code
         versionName = ProjectConfig.Version.name
 
-        testInstrumentationRunner = "eu.darken.fmdnt.HiltTestRunner"
+        testInstrumentationRunner = "eu.darken.fmdn.HiltTestRunner"
 
         buildConfigField("String", "PACKAGENAME", "\"${ProjectConfig.packageName}\"")
         buildConfigField("String", "VERSION_CODE", "\"${ProjectConfig.Version.code}\"")
@@ -133,7 +133,7 @@ android {
             assets.srcDirs(files("$projectDir/schemas"))
         }
     }
-    namespace = "eu.darken.fmdnt"
+    namespace = "eu.darken.fmdn"
 }
 
 dependencies {

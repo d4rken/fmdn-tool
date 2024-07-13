@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <Preference
         android:icon="@drawable/ic_settings_24"
-        app:fragment="eu.darken.fmdnt.main.ui.settings.general.GeneralSettingsFragment"
+        app:fragment="eu.darken.fmdn.main.ui.settings.general.GeneralSettingsFragment"
         app:summary="@string/general_settings_desc"
         app:title="@string/general_settings_label" />
 
     <PreferenceCategory android:title="@string/settings_category_other_label">
 
-        <eu.darken.fmdnt.common.preferences.IntentPreference
+        <eu.darken.fmdn.common.preferences.IntentPreference
             android:icon="@drawable/ic_changelog_24"
             android:key="core.changelog"
             android:title="@string/changelog_label"
@@ -17,17 +17,17 @@
             <intent
                 android:action="android.intent.action.VIEW"
                 android:data="https://darken.eu/" />
-        </eu.darken.fmdnt.common.preferences.IntentPreference>
+        </eu.darken.fmdn.common.preferences.IntentPreference>
 
         <Preference
             android:icon="@drawable/ic_contact_support_24"
-            app:fragment="eu.darken.fmdnt.main.ui.settings.support.SupportFragment"
+            app:fragment="eu.darken.fmdn.main.ui.settings.support.SupportFragment"
             app:summary="¯\\_(ツ)_/¯"
             app:title="@string/settings_support_label" />
 
         <Preference
             android:icon="@drawable/ic_heart_24"
-            app:fragment="eu.darken.fmdnt.main.ui.settings.acks.AcknowledgementsFragment"
+            app:fragment="eu.darken.fmdn.main.ui.settings.acks.AcknowledgementsFragment"
             app:summary="@string/general_thank_you_label"
             app:title="@string/settings_acknowledgements_label" />
         <Preference

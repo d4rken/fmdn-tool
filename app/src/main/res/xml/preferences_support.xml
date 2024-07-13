@@ -2,31 +2,31 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <eu.darken.fmdnt.common.preferences.IntentPreference
+    <eu.darken.fmdn.common.preferences.IntentPreference
         android:icon="@drawable/ic_card_text_24"
         android:title="@string/documentation_label">
         <intent
             android:action="android.intent.action.VIEW"
             android:data="https://darken.eu" />
-    </eu.darken.fmdnt.common.preferences.IntentPreference>
+    </eu.darken.fmdn.common.preferences.IntentPreference>
 
-    <eu.darken.fmdnt.common.preferences.IntentPreference
+    <eu.darken.fmdn.common.preferences.IntentPreference
         android:icon="@drawable/ic_github_24"
         android:summary="@string/issue_tracker_description"
         android:title="@string/issue_tracker_label">
         <intent
             android:action="android.intent.action.VIEW"
             android:data="https://github.com/d4rken/fmdn-tool" />
-    </eu.darken.fmdnt.common.preferences.IntentPreference>
+    </eu.darken.fmdn.common.preferences.IntentPreference>
 
-    <eu.darken.fmdnt.common.preferences.IntentPreference
+    <eu.darken.fmdn.common.preferences.IntentPreference
         android:icon="@drawable/ic_discord_24"
         android:summary="@string/discord_description"
         android:title="@string/discord_label">
         <intent
             android:action="android.intent.action.VIEW"
             android:data="https://discord.gg/8Fjy6PTfXu" />
-    </eu.darken.fmdnt.common.preferences.IntentPreference>
+    </eu.darken.fmdn.common.preferences.IntentPreference>
 
     <PreferenceCategory app:title="@string/settings_category_other_label">
         <Preference

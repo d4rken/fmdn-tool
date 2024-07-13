@@ -1,6 +1,6 @@
 package testhelpers.logging
 
-import eu.darken.fmdnt.common.debug.logging.Logging
+import eu.darken.fmdn.common.debug.logging.Logging
 
 class JUnitLogger(private val minLogLevel: Logging.Priority = Logging.Priority.VERBOSE) : Logging.Logger {
 
