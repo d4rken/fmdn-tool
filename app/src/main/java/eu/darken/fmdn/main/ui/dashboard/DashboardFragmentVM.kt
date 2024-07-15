@@ -5,13 +5,16 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import eu.darken.fmdn.common.BuildConfigWrap
 import eu.darken.fmdn.common.coroutine.DispatcherProvider
 import eu.darken.fmdn.common.debug.logging.Logging.Priority.ERROR
+import eu.darken.fmdn.common.debug.logging.Logging.Priority.WARN
 import eu.darken.fmdn.common.debug.logging.asLog
 import eu.darken.fmdn.common.debug.logging.log
 import eu.darken.fmdn.common.debug.logging.logTag
 import eu.darken.fmdn.common.github.GithubReleaseCheck
 import eu.darken.fmdn.common.uix.ViewModel3
 import eu.darken.fmdn.tracker.core.TrackerHub
+import eu.darken.fmdn.tracker.core.afn.AFNTracker
 import eu.darken.fmdn.tracker.core.gfd.GFDTracker
+import eu.darken.fmdn.tracker.ui.list.items.AFNTrackerCardVH
 import eu.darken.fmdn.tracker.ui.list.items.GFDTrackerCardVH
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.filterNotNull
@@ -65,7 +68,14 @@ class DashboardFragmentVM @Inject constructor(
                     tracker = it
                 )
 
-                else -> null
+                is AFNTracker -> AFNTrackerCardVH.Item(
+                    tracker = it
+                )
+
+                else -> {
+                    log(TAG, WARN) { "Tracker is not mapped to UI: $it" }
+                    null
+                }
             }
         }
     }.asLiveData2()

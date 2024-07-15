@@ -37,7 +37,7 @@ class BleScanner @Inject constructor(
     @RequiresPermission(anyOf = [BLUETOOTH_SCAN])
     fun scan(
         settings: ScannerSettings = ScannerSettings()
-    ): Flow<Collection<BleScanResult>> = callbackFlow {
+    ): Flow<Collection<BleScanResult>> = callbackFlow<Collection<BleScanResult>> {
         log(TAG) { "scan($settings)" }
 
         val adapter = bluetoothManager.adapter ?: throw IllegalStateException("Bluetooth adapter unavailable")
@@ -164,10 +164,16 @@ class BleScanner @Inject constructor(
 
         if (settings.disableDirectScanCallback) {
             val callbackIntent = createStartIntent()
-            log(TAG) { "Intent callback: startScan(filters=$settings.filters, settings=$scanSettings, callbackIntent=$callbackIntent)" }
+            log(
+                TAG,
+                VERBOSE
+            ) { "Intent callback: startScan(filters=$settings.filters, settings=$scanSettings, callbackIntent=$callbackIntent)" }
             scanner.startScan(filterList, scanSettings, callbackIntent)
         } else {
-            log(TAG) { "Direct callback: startScan(filters=$settings.filters, settings=$scanSettings, callback=$callback)" }
+            log(
+                TAG,
+                VERBOSE
+            ) { "Direct callback: startScan(filters=$settings.filters, settings=$scanSettings, callback=$callback)" }
             scanner.startScan(filterList, scanSettings, callback)
         }
 
@@ -182,6 +188,10 @@ class BleScanner @Inject constructor(
             log(TAG) { "BleScanner stopped" }
         }
     }
+        .onEach {
+            log(TAG, VERBOSE) { "Scanned ${it.size} items" }
+            it.forEach { log(TAG, VERBOSE) { "$it" } }
+        }
 
     private val receiverIntent by lazy {
         Intent(context, BleScanResultReceiver::class.java).apply {

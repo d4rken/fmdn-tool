@@ -13,6 +13,7 @@ import eu.darken.fmdn.common.lists.differ.setupDiffer
 import eu.darken.fmdn.common.lists.modular.ModularAdapter
 import eu.darken.fmdn.common.lists.modular.mods.DataBinderMod
 import eu.darken.fmdn.common.lists.modular.mods.TypedVHCreatorMod
+import eu.darken.fmdn.tracker.ui.list.items.AFNTrackerCardVH
 import eu.darken.fmdn.tracker.ui.list.items.GFDTrackerCardVH
 import javax.inject.Inject
 
@@ -31,6 +32,7 @@ class TrackerAdapter @Inject constructor(
     init {
         addMod(DataBinderMod(data))
         addMod(TypedVHCreatorMod({ data[it] is GFDTrackerCardVH.Item }) { GFDTrackerCardVH(it) })
+        addMod(TypedVHCreatorMod({ data[it] is AFNTrackerCardVH.Item }) { AFNTrackerCardVH(it) })
     }
 
     abstract class BaseVH<D : Item, B : ViewBinding>(

@@ -14,8 +14,8 @@
         <ImageView
             android:id="@+id/icon"
             android:layout_width="24dp"
+            android:src="@drawable/ic_apple_24"
             android:layout_height="24dp"
-            android:src="@drawable/ic_google_24"
             app:layout_constraintBottom_toBottomOf="@id/subtitle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/title" />

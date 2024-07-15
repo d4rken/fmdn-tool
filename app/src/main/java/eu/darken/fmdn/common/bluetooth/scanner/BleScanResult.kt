@@ -2,43 +2,34 @@ package eu.darken.fmdn.common.bluetooth.scanner
 
 import android.bluetooth.le.ScanResult
 import android.os.Parcelable
-import androidx.core.util.forEach
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import eu.darken.fmdn.common.asHumanReadableHex
 import kotlinx.parcelize.Parcelize
+import okio.ByteString
+import okio.ByteString.Companion.toByteString
 import java.time.Instant
 
 @Parcelize
-@JsonClass(generateAdapter = true)
 data class BleScanResult(
-    @Json(name = "receivedAt") val receivedAt: Instant,
-    @Json(name = "address") val address: String,
-    @Json(name = "rssi") val rssi: Int,
-    @Json(name = "generatedAtNanos") val generatedAtNanos: Long,
-    @Json(name = "manufacturerSpecificData") val manufacturerSpecificData: Map<Int, ByteArray>
+    val receivedAt: Instant,
+    val scanResult: ScanResult,
 ) : Parcelable {
+    val address: String
+        get() = scanResult.device.address
 
-    fun getManufacturerSpecificData(id: Int): ByteArray? = manufacturerSpecificData[id]
+    val rssi: Int
+        get() = scanResult.rssi
+
+    val raw: ByteString?
+        get() = scanResult.scanRecord!!.bytes?.toByteString()
 
     override fun toString(): String {
-        val sb = StringBuilder()
-        manufacturerSpecificData.forEach { (key, value) ->
-            sb.append("$key: ${value.joinToString(separator = " ") { String.format("%02X", it) }}")
-        }
-        return "BleScanResult($rssi, $address, $generatedAtNanos, $sb"
+        return "BleScanResult($rssi, $address, ${raw?.asHumanReadableHex()})"
     }
 
     companion object {
         fun fromScanResult(scanResult: ScanResult) = BleScanResult(
             receivedAt = Instant.now(),
-            address = scanResult.device.address,
-            rssi = scanResult.rssi,
-            generatedAtNanos = scanResult.timestampNanos,
-            manufacturerSpecificData = mutableMapOf<Int, ByteArray>().apply {
-                scanResult.scanRecord?.manufacturerSpecificData?.forEach { key, value ->
-                    this[key] = value
-                }
-            }
+            scanResult = scanResult,
         )
     }
 }
