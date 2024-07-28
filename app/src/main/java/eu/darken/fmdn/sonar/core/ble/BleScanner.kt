@@ -1,4 +1,4 @@
-package eu.darken.fmdn.common.bluetooth.scanner
+package eu.darken.fmdn.sonar.core.ble
 
 import android.Manifest.permission.BLUETOOTH_SCAN
 import android.app.PendingIntent
@@ -38,7 +38,8 @@ class BleScanner @Inject constructor(
     fun scan(
         settings: ScannerSettings = ScannerSettings()
     ): Flow<Collection<BleScanResult>> = callbackFlow<Collection<BleScanResult>> {
-        log(TAG) { "scan($settings)" }
+        log(TAG) { "scan(...)" }
+        log(TAG) { "Starting scan with settings: $settings" }
 
         val adapter = bluetoothManager.adapter ?: throw IllegalStateException("Bluetooth adapter unavailable")
 
@@ -133,14 +134,14 @@ class BleScanner @Inject constructor(
             when (settings.scannerMode) {
                 ScannerMode.LOW_POWER -> {
                     setScanMode(ScanSettings.SCAN_MODE_LOW_POWER)
-                    setMatchMode(ScanSettings.MATCH_MODE_STICKY)
-                    setNumOfMatches(ScanSettings.MATCH_NUM_FEW_ADVERTISEMENT)
+                    setMatchMode(ScanSettings.MATCH_MODE_AGGRESSIVE)
+                    setNumOfMatches(ScanSettings.MATCH_NUM_MAX_ADVERTISEMENT)
                 }
 
                 ScannerMode.BALANCED -> {
                     setScanMode(ScanSettings.SCAN_MODE_BALANCED)
-                    setMatchMode(ScanSettings.MATCH_MODE_STICKY)
-                    setNumOfMatches(ScanSettings.MATCH_NUM_FEW_ADVERTISEMENT)
+                    setMatchMode(ScanSettings.MATCH_MODE_AGGRESSIVE)
+                    setNumOfMatches(ScanSettings.MATCH_NUM_MAX_ADVERTISEMENT)
                 }
 
                 ScannerMode.LOW_LATENCY -> {

@@ -5,19 +5,23 @@ import eu.darken.fmdn.R
 import eu.darken.fmdn.common.asHex
 import eu.darken.fmdn.common.lists.binding
 import eu.darken.fmdn.databinding.TrackerListGfdItemBinding
+import eu.darken.fmdn.databinding.TrackerListSamsungItemBinding
+import eu.darken.fmdn.databinding.TrackerListTileItemBinding
 import eu.darken.fmdn.tracker.core.gfd.GFDTracker
+import eu.darken.fmdn.tracker.core.samsung.SamsungTracker
+import eu.darken.fmdn.tracker.core.tile.TileTracker
 import eu.darken.fmdn.tracker.ui.list.TrackerAdapter
 import kotlin.math.abs
 
-class GFDTrackerCardVH(parent: ViewGroup) :
-    TrackerAdapter.BaseVH<GFDTrackerCardVH.Item, TrackerListGfdItemBinding>(
-        R.layout.tracker_list_gfd_item,
+class SamsungTrackerCardVH(parent: ViewGroup) :
+    TrackerAdapter.BaseVH<SamsungTrackerCardVH.Item, TrackerListSamsungItemBinding>(
+        R.layout.tracker_list_samsung_item,
         parent
     ) {
 
-    override val viewBinding = lazy { TrackerListGfdItemBinding.bind(itemView) }
+    override val viewBinding = lazy { TrackerListSamsungItemBinding.bind(itemView) }
 
-    override val onBindData: TrackerListGfdItemBinding.(
+    override val onBindData: TrackerListSamsungItemBinding.(
         item: Item,
         payloads: List<Any>
     ) -> Unit = binding { item ->
@@ -27,7 +31,7 @@ class GFDTrackerCardVH(parent: ViewGroup) :
     }
 
     data class Item(
-        val tracker: GFDTracker,
+        val tracker: SamsungTracker,
     ) : TrackerAdapter.Item {
         override val stableId: Long = tracker.id.hashCode().toLong()
     }

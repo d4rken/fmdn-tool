@@ -1,18 +1,18 @@
 package eu.darken.fmdn.tracker.core
 
-import okio.ByteString
+import eu.darken.fmdn.common.ca.CaString
+import eu.darken.fmdn.sonar.core.TrackerPing
 import java.time.Instant
 
 interface Tracker {
     val id: Id
 
-    val address: String
+    val label: CaString
 
-    val rssi: Int
+    val lastSeen: Instant?
+        get() = lastPing?.lastSeen
 
-    val raw: ByteString?
-
-    val lastSeen: Instant
+    val lastPing: TrackerPing?
 
     data class Id(
         val value: String

@@ -44,7 +44,12 @@ class DashboardFragment : Fragment3(R.layout.main_fragment) {
         ui.list.setupDefaults(trackerAdapter, dividers = false)
 
         vm.listItems.observe2(ui) {
-            trackerAdapter.update(it)
+            toolbar.subtitle = resources.getQuantityString(
+                R.plurals.general_tracker_in_range_count,
+                it.nearbyCount,
+                it.nearbyCount,
+            )
+            trackerAdapter.update(it.items)
         }
 
         vm.newRelease.observe2(ui) { release ->

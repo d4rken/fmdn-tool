@@ -1,4 +1,4 @@
-package eu.darken.fmdn.common.bluetooth.scanner
+package eu.darken.fmdn.sonar.core.ble
 
 import androidx.annotation.StringRes
 import com.squareup.moshi.Json

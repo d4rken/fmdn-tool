@@ -13,9 +13,16 @@ import eu.darken.fmdn.common.github.GithubReleaseCheck
 import eu.darken.fmdn.common.uix.ViewModel3
 import eu.darken.fmdn.tracker.core.TrackerHub
 import eu.darken.fmdn.tracker.core.afn.AFNTracker
+import eu.darken.fmdn.tracker.core.chipolo.ChipoloTracker
 import eu.darken.fmdn.tracker.core.gfd.GFDTracker
+import eu.darken.fmdn.tracker.core.samsung.SamsungTracker
+import eu.darken.fmdn.tracker.core.tile.TileTracker
+import eu.darken.fmdn.tracker.ui.list.TrackerAdapter
 import eu.darken.fmdn.tracker.ui.list.items.AFNTrackerCardVH
+import eu.darken.fmdn.tracker.ui.list.items.ChipoloTrackerCardVH
 import eu.darken.fmdn.tracker.ui.list.items.GFDTrackerCardVH
+import eu.darken.fmdn.tracker.ui.list.items.SamsungTrackerCardVH
+import eu.darken.fmdn.tracker.ui.list.items.TileTrackerCardVH
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flow
@@ -61,15 +68,27 @@ class DashboardFragmentVM @Inject constructor(
         }
         .asLiveData2()
 
-    val listItems = trackerHub.devices.map { trackers ->
-        trackers.mapNotNull {
+    val listItems = trackerHub.trackers.map { trackers ->
+        val items = trackers.mapNotNull {
             when (it) {
                 is GFDTracker -> GFDTrackerCardVH.Item(
-                    tracker = it
+                    tracker = it,
                 )
 
                 is AFNTracker -> AFNTrackerCardVH.Item(
-                    tracker = it
+                    tracker = it,
+                )
+
+                is TileTracker -> TileTrackerCardVH.Item(
+                    tracker = it,
+                )
+
+                is SamsungTracker -> SamsungTrackerCardVH.Item(
+                    tracker = it,
+                )
+
+                is ChipoloTracker -> ChipoloTrackerCardVH.Item(
+                    tracker = it,
                 )
 
                 else -> {
@@ -78,7 +97,16 @@ class DashboardFragmentVM @Inject constructor(
                 }
             }
         }
+        State(
+            items = items,
+            nearbyCount = trackers.size,
+        )
     }.asLiveData2()
+
+    data class State(
+        val items: List<TrackerAdapter.Item>,
+        val nearbyCount: Int,
+    )
 
     companion object {
         private val TAG = logTag("Dashboard", "VM")

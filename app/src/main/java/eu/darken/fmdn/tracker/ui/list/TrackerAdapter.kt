@@ -13,8 +13,12 @@ import eu.darken.fmdn.common.lists.differ.setupDiffer
 import eu.darken.fmdn.common.lists.modular.ModularAdapter
 import eu.darken.fmdn.common.lists.modular.mods.DataBinderMod
 import eu.darken.fmdn.common.lists.modular.mods.TypedVHCreatorMod
+import eu.darken.fmdn.sonar.core.devices.chipolo.ChipoloTrackerPing
 import eu.darken.fmdn.tracker.ui.list.items.AFNTrackerCardVH
+import eu.darken.fmdn.tracker.ui.list.items.ChipoloTrackerCardVH
 import eu.darken.fmdn.tracker.ui.list.items.GFDTrackerCardVH
+import eu.darken.fmdn.tracker.ui.list.items.SamsungTrackerCardVH
+import eu.darken.fmdn.tracker.ui.list.items.TileTrackerCardVH
 import javax.inject.Inject
 
 
@@ -33,6 +37,9 @@ class TrackerAdapter @Inject constructor(
         addMod(DataBinderMod(data))
         addMod(TypedVHCreatorMod({ data[it] is GFDTrackerCardVH.Item }) { GFDTrackerCardVH(it) })
         addMod(TypedVHCreatorMod({ data[it] is AFNTrackerCardVH.Item }) { AFNTrackerCardVH(it) })
+        addMod(TypedVHCreatorMod({ data[it] is TileTrackerCardVH.Item }) { TileTrackerCardVH(it) })
+        addMod(TypedVHCreatorMod({ data[it] is SamsungTrackerCardVH.Item }) { SamsungTrackerCardVH(it) })
+        addMod(TypedVHCreatorMod({ data[it] is ChipoloTrackerCardVH.Item }) { ChipoloTrackerCardVH(it) })
     }
 
     abstract class BaseVH<D : Item, B : ViewBinding>(

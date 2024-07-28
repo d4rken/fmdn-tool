@@ -61,4 +61,9 @@
     <string name="settings_scanner_mode_lowpower_label">Low power</string>
     <string name="settings_scanner_mode_balanced_label">Balanced</string>
     <string name="settings_scanner_mode_lowlatency_label">Low latency</string>
+
+    <plurals name="general_tracker_in_range_count">
+        <item quantity="one">%d device is in range</item>
+        <item quantity="other">%d devices are in range</item>
+    </plurals>
 </resources>

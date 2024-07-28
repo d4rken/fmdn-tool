@@ -1,11 +1,9 @@
-package eu.darken.fmdn.common.bluetooth.scanner
+package eu.darken.fmdn.sonar.core.ble
 
 import android.bluetooth.le.ScanResult
 import android.os.Parcelable
-import eu.darken.fmdn.common.asHumanReadableHex
+import eu.darken.fmdn.common.asHex
 import kotlinx.parcelize.Parcelize
-import okio.ByteString
-import okio.ByteString.Companion.toByteString
 import java.time.Instant
 
 @Parcelize
@@ -19,11 +17,11 @@ data class BleScanResult(
     val rssi: Int
         get() = scanResult.rssi
 
-    val raw: ByteString?
-        get() = scanResult.scanRecord!!.bytes?.toByteString()
+    val raw: UByteArray
+        get() = scanResult.scanRecord!!.bytes.asUByteArray()
 
     override fun toString(): String {
-        return "BleScanResult($rssi, $address, ${raw?.asHumanReadableHex()})"
+        return "BleScanResult($rssi, $address, ${raw.asHex()})"
     }
 
     companion object {

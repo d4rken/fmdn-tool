@@ -1,4 +1,4 @@
-package eu.darken.fmdn.common.bluetooth.scanner
+package eu.darken.fmdn.sonar.core.ble
 
 import android.bluetooth.le.BluetoothLeScanner
 import android.bluetooth.le.ScanResult

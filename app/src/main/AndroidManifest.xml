@@ -47,7 +47,7 @@
         </activity>
 
         <receiver
-            android:name=".common.bluetooth.scanner.BleScanResultReceiver"
+            android:name=".sonar.core.ble.BleScanResultReceiver"
             android:exported="false">
             <intent-filter>
                 <action android:name="eu.darken.capod.bluetooth.DELIVER_SCAN_RESULTS" />

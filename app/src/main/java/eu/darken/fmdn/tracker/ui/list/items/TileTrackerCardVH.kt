@@ -4,20 +4,22 @@ import android.view.ViewGroup
 import eu.darken.fmdn.R
 import eu.darken.fmdn.common.asHex
 import eu.darken.fmdn.common.lists.binding
-import eu.darken.fmdn.databinding.TrackerListAfnItemBinding
-import eu.darken.fmdn.tracker.core.afn.AFNTracker
+import eu.darken.fmdn.databinding.TrackerListGfdItemBinding
+import eu.darken.fmdn.databinding.TrackerListTileItemBinding
+import eu.darken.fmdn.tracker.core.gfd.GFDTracker
+import eu.darken.fmdn.tracker.core.tile.TileTracker
 import eu.darken.fmdn.tracker.ui.list.TrackerAdapter
 import kotlin.math.abs
 
-class AFNTrackerCardVH(parent: ViewGroup) :
-    TrackerAdapter.BaseVH<AFNTrackerCardVH.Item, TrackerListAfnItemBinding>(
-        R.layout.tracker_list_afn_item,
+class TileTrackerCardVH(parent: ViewGroup) :
+    TrackerAdapter.BaseVH<TileTrackerCardVH.Item, TrackerListTileItemBinding>(
+        R.layout.tracker_list_tile_item,
         parent
     ) {
 
-    override val viewBinding = lazy { TrackerListAfnItemBinding.bind(itemView) }
+    override val viewBinding = lazy { TrackerListTileItemBinding.bind(itemView) }
 
-    override val onBindData: TrackerListAfnItemBinding.(
+    override val onBindData: TrackerListTileItemBinding.(
         item: Item,
         payloads: List<Any>
     ) -> Unit = binding { item ->
@@ -27,7 +29,7 @@ class AFNTrackerCardVH(parent: ViewGroup) :
     }
 
     data class Item(
-        val tracker: AFNTracker,
+        val tracker: TileTracker,
     ) : TrackerAdapter.Item {
         override val stableId: Long = tracker.id.hashCode().toLong()
     }

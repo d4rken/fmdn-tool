@@ -1,4 +1,4 @@
-package eu.darken.fmdn.common
+package eu.darken.fmdn.common.collections
 
 import java.nio.ByteBuffer
 import java.util.*
@@ -11,7 +11,7 @@ val Byte.lowerNibble get() = (this.toInt() and 0b1111).toShort()
 val UByte.upperNibble get() = (this.toInt() shr 4 and 0b1111).toUShort()
 val UByte.lowerNibble get() = (this.toInt() and 0b1111).toUShort()
 
-fun Byte.isBitSet(pos: Int): Boolean = BitSet.valueOf(arrayOf(this).toByteArray()).get(pos)
+fun Byte.isBitSet(pos: Int): Boolean = (this.toInt() shr pos) and 1 == 1
 fun UByte.isBitSet(pos: Int): Boolean = this.toByte().isBitSet(pos)
 
 fun Short.isBitSet(pos: Int): Boolean = this.toByte().isBitSet(pos)
