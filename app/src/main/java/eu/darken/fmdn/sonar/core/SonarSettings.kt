@@ -25,7 +25,7 @@ class SonarSettings @Inject constructor(
     override val dataStore: DataStore<Preferences>
         get() = context.dataStore
 
-    val scannerMode = dataStore.createValue("core.scanner.mode", ScannerMode.BALANCED, moshi)
+    val scannerMode = dataStore.createValue("core.scanner.mode", ScannerMode.LOW_LATENCY, moshi)
     val isOffloadedFilteringDisabled = dataStore.createValue("core.compat.offloaded.filtering.disabled", false)
     val isOffloadedBatchingDisabled = dataStore.createValue("core.compat.offloaded.batching.disabled", false)
     val useIndirectScanResultCallback = dataStore.createValue("core.compat.indirectcallback.enabled", false)

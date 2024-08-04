@@ -31,17 +31,24 @@ class AFNPingFilter @Inject constructor(
     override val scanFilters = flowOf<Set<ScanFilter>>(
         // General continuity protocol style https://adamcatley.com/AirTag.html
         setOf(
-            // Find My Network Service Type
+            // Maintained FindMy / Near owner
+            // 07 FF 4C 00|12 02#00#03
+            // 07 FF 4C 00|12 02#10#03
+            // 07 FF 4C 00|12 02#14#03
+            // Unmaintained FindMy
+            // 1E FF 4C 00|12 19#10#EA C8 E2 B3 93 54 98 E0 1F EA 10 10 38 A9 BF CC 89 6A 82 14 04 B8 03 E2
             ScanFilter.Builder().setManufacturerData(
                 APPLE_IDENTIFIER,
-                byteArrayOf(0x12, 0x19),
-                byteArrayOf(0xFF.toByte(), 0xFF.toByte())
+                byteArrayOf(0x12),
+                byteArrayOf(0xFF.toByte())
             ).build(),
-            // Unpaired Airtag
+
+            // Unregistered FindMy
+            // 1E FF 4C 00|07 19#05#00 55 10 00 00 01 3C 0B AF 07 2D 1F 1B 2B 85 B2 23 2E B9 67 97 E7 36 D3
             ScanFilter.Builder().setManufacturerData(
                 APPLE_IDENTIFIER,
-                byteArrayOf(0x07, 0x19),
-                byteArrayOf(0xFF.toByte(), 0xFF.toByte())
+                byteArrayOf(0x07),
+                byteArrayOf(0xFF.toByte())
             ).build(),
         )
     ).replayingShare(appScope)
@@ -55,6 +62,11 @@ class AFNPingFilter @Inject constructor(
             val payload = scan.scanResult.scanRecord!!.manufacturerSpecificData[0x004C].asUByteArray()
             when (payload.getOrNull(0)) {
                 0x12.toUByte() -> DefaultAFNPing(
+                    scanResult = scan,
+                    raw = payload,
+                )
+
+                0x07.toUByte() -> UnregisteredAFNPing(
                     scanResult = scan,
                     raw = payload,
                 )
