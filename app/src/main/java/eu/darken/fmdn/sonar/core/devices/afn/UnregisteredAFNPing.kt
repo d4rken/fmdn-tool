@@ -15,6 +15,6 @@ data class UnregisteredAFNPing(
         get() = "$deviceType, $batteryLevel, $state"
 
     override fun toString(): String {
-        return "DefaultAFNPing($address, $rssi, $quickInfo)"
+        return "DefaultAFNPing($address, $rssi, $quickInfo, $lastSeen)"
     }
 }
